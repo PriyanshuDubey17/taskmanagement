@@ -12,18 +12,18 @@ const EditTask = () => {
     title: "",
     description: "",
     dueDate: "",
-    image: "",
+    image: "", // This will hold the File object
+    previewImage: "", // For showing preview
     status: "",
   });
 
-  // console.log("l", location.state);
-  // console.log("l", id);
   useEffect(() => {
     setFormData({
       title: location.state.taskTitle,
       description: location.state.taskDescription,
       dueDate: location.state.taskDueDate,
-      image: location.state.taskImgUrl,
+      image: "",
+      previewImage: location.state.taskImgUrl,
       status: location.state.taskStatus,
     });
   }, [id]);
@@ -39,34 +39,36 @@ const EditTask = () => {
   const handleSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
-    // console.log("Edited Task Data:", formData);
 
     const updateData = new FormData();
     updateData.append("taskTitle", formData.title);
     updateData.append("taskDescription", formData.description);
     updateData.append("taskDueDate", formData.dueDate);
     updateData.append("taskStatus", formData.status);
+
     if (formData.image) {
-      updateData.append("taskImage", formData.image);
+      updateData.append("taskImage", formData.image); 
     }
 
     axios
-      .put("https://taskmanagement-u110.onrender.com/api/v1/task/update-task/" + id, updateData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .put(
+        "https://taskmanagement-u110.onrender.com/api/v1/task/update-task/" + id,
+        updateData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((result) => {
         setIsLoading(false);
-        // console.log(result);
         toast(result.data.message);
         navigate("/layout/tasks");
       })
       .catch((error) => {
         setIsLoading(false);
         toast(error.response.data.message);
-        // console.log(error);
       });
   };
 
@@ -111,21 +113,20 @@ const EditTask = () => {
             onChange={(e) => {
               const file = e.target.files[0];
               if (file) {
-                const imageUrl = URL.createObjectURL(file);
                 setFormData((prev) => ({
                   ...prev,
-                  image: imageUrl,
+                  image: file, // Actual file for uploading
+                  previewImage: URL.createObjectURL(file), // For preview
                 }));
               }
             }}
             className="w-full border p-2 rounded"
           />
 
-          
-          {formData.image && (
+          {formData.previewImage && (
             <div className="text-center mt-4">
               <img
-                src={formData.image}
+                src={formData.previewImage}
                 alt="Preview"
                 className="w-full h-48 object-cover rounded border"
               />
