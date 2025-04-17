@@ -74,12 +74,14 @@ const updateTask = async (req, res, next) => {
     if (!taskFind) {
       return next(new ApiError("task not found with taskId", 500));
     }
-
+    // console.log("kkkkkk", taskFind);
     if (req.files) {
       await cloudinary.uploader.destroy(taskFind.taskImgId);
       const uploadNewImg = await cloudinary.uploader.upload(
         req.files.taskImage.tempFilePath
       );
+
+      // console.log("kkkkkk",uploadNewImg );
       //   console.log("ggggggggggggggggg file");
       const newUpdatedData = {
         taskTitle: taskTitle,
