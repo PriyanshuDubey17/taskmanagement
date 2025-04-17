@@ -51,7 +51,7 @@ const EditTask = () => {
     }
 
     axios
-      .put("http://localhost:4000/api/v1/task/update-task/" + id, updateData, {
+      .put("https://taskmanagement-u110.onrender.com/api/v1/task/update-task/" + id, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,

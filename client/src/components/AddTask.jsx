@@ -35,7 +35,7 @@ const AddTask = () => {
     newTask.append("taskImage", image);
 
     axios
-      .post("http://localhost:4000/api/v1/task/add-task", newTask, {
+      .post("https://taskmanagement-u110.onrender.com/api/v1/task/add-task", newTask, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

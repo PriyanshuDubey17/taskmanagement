@@ -27,7 +27,7 @@ const SignUpPage = () => {
     newUser.append("password",password);
     newUser.append("photo",profilePic);
 
-    axios.post("http://localhost:4000/api/v1/user/sign-up", newUser)
+    axios.post("https://taskmanagement-u110.onrender.com/api/v1/user/sign-up", newUser)
     
     .then((result)=>{
      setIsLoading(false)

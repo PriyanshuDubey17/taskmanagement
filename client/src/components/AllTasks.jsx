@@ -27,7 +27,7 @@ const AllTasks = () => {
 
   const getAllTask = () => {
     axios
-      .get("http://localhost:4000/api/v1/task/all-task", {
+      .get("https://taskmanagement-u110.onrender.com/api/v1/task/all-task", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -47,7 +47,7 @@ const AllTasks = () => {
     setDeletes(true);
     // console.log("kkkkk", id);
     axios
-      .delete("http://localhost:4000/api/v1/task/delete-task/" + id, {
+      .delete("https://taskmanagement-u110.onrender.com/api/v1/task/delete-task/" + id, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -34,7 +34,7 @@ Toast notifications for actions (success/failure)
 
 ---
 
----------------------**************\*\***************
+---------------------******\*\*******\*\*******\*\*******
 
 Backend Project
 This is the backend for your project, using Node.js, Express, MongoDB, and various other dependencies to handle API requests, authentication, and task management. This backend is responsible for performing CRUD operations on tasks, handling file uploads, and integrating with third-party services like Cloudinary.
@@ -57,3 +57,6 @@ dotenv: To manage environment variables
 cors: To handle Cross-Origin Resource Sharing
 
 express-fileupload: For handling file uploads
+
+use this server on locally
+http://localhost:4000
