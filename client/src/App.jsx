@@ -5,7 +5,7 @@ import Layout from "./components/Layout";
 import AllTasks from "./components/AllTasks";
 import EditTask from "./components/EditTask";
 import AddTask from "./components/AddTask";
-import LoginPage from "./components/Loginpage";
+import LoginPage from "./components/LoginPage";
 import SignUpPage from "./components/SignUpPage";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./components/NotFound";
